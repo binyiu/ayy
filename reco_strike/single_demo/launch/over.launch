@@ -1,0 +1,7 @@
+<launch>
+  <!-- 启动 service.py 节点 -->
+  <node name="uav_service" pkg="single_demo" type="service.py" output="screen" />
+
+  <!-- 启动 fixedwing.py 节点 -->
+  <node name="uav_fixedwing" pkg="single_demo" type="fixedwing_waypoints.py" output="screen" />
+</launch>

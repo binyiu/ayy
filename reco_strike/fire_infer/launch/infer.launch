@@ -1,0 +1,23 @@
+<launch>
+  <!-- 启动 fire_detection_node -->
+  <node pkg="fire_infer"
+        type="infer_node.py"
+        name="fire_detection_node"
+        output="screen"
+        cwd="node">
+    <env name="PYTHONPATH" value="$(find fire_infer)/yolov5:$(env PYTHONPATH)" />
+
+    <!-- 模型与视频参数 -->
+    <param name="model_path" value="$(find fire_infer)/models/best_target.pt" />
+    <param name="digit_model_path" value="$(find fire_infer)/models/number_identify.pt" />
+    <param name="video_path" value="$(find fire_infer)/videos/bazi.mp4" />
+    <param name="output_dir" value="$(find fire_infer)/output" />
+  </node>
+
+  <!-- 启动 digit_listener 节点 -->
+  <node pkg="fire_infer"
+        type="digit_listener.py"
+        name="digit_listener_node"
+        output="screen"
+        cwd="node"/>
+</launch>
